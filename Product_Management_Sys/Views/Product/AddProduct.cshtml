@@ -1,0 +1,26 @@
+﻿@model EntityLayer.Concrete.Product
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Views/Shared/_UiLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <form method="post">
+        <div class="mb-3">
+            @Html.LabelFor(x => x.Name, "Ürün Adı", new { @class = "form-label" })
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+        <div class="mb-3">
+            @Html.LabelFor(x => x.Price, "Ürün Fiyatı", new { @class = "form-label" })
+            @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Price)
+        </div>
+        <div class="mb-3">
+            @Html.LabelFor(x => x.Stock, "Ürün Stok Sayısı", new { @class = "form-label" })
+            @Html.TextBoxFor(x => x.Stock, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Stock)
+        </div>
+        <button type="submit" class="btn btn-primary">Ürünü Ekle</button>
+    </form>
+</div>

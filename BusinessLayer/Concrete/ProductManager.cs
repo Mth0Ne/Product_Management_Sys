@@ -38,7 +38,6 @@ namespace BusinessLayer.Concrete
             {
                 //Hata
             }
-            _productDal.Insert(t);
         }
 
         public void TDelete(Product t)
