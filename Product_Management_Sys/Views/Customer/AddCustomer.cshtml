@@ -1,0 +1,21 @@
+﻿@model EntityLayer.Concrete.Customer
+@{
+    ViewData["Title"] = "AddCustomer";
+    Layout = "~/Views/Shared/_UiLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <form method="post">
+        <div class="mb-3">
+            @Html.LabelFor(x => x.Name, "Müşteri Adı", new { @class = "form-label" })
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+        </div>
+        <div class="mb-3">
+            @Html.LabelFor(x => x.City, "Şehir", new { @class = "form-label" })
+            @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.City, "", new { @class = "text-danger" })
+        </div>
+        <button type="submit" class="btn btn-primary">Müşteri Ekle</button>
+    </form>
+</div>
