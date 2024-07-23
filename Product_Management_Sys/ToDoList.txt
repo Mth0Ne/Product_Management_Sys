@@ -1,0 +1,11 @@
+﻿> Arama İşlemi
+> Üyelik Sistemi
+> Identity
+> Yardım Popup
+> Footer
+> Ayarlar
+> Çıkış Yapma
+> Yeni Üye Kaydı
+> Admin --> AspNet User
+> Publish
+> Canlıya alınması

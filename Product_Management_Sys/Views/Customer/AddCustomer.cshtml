@@ -4,18 +4,17 @@
     Layout = "~/Views/Shared/_UiLayout.cshtml";
 }
 
-<div class="container mt-4">
-    <form method="post">
-        <div class="mb-3">
+<form method="post">
             @Html.LabelFor(x => x.Name, "Müşteri Adı", new { @class = "form-label" })
             @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
             @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
-        </div>
-        <div class="mb-3">
+            <br />
             @Html.LabelFor(x => x.City, "Şehir", new { @class = "form-label" })
             @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
             @Html.ValidationMessageFor(x => x.City, "", new { @class = "text-danger" })
-        </div>
+            <br />
+            @Html.Label("Meslek Seçiniz");
+            @Html.DropDownListFor(x=>x.JobID,(List<SelectListItem>) ViewBag.v,new{@class = "form-control"})
+            <br />
         <button type="submit" class="btn btn-primary">Müşteri Ekle</button>
-    </form>
-</div>
+</form>

@@ -4,21 +4,32 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Product_Management_Sys.Controllers
 {
     public class CustomerController : Controller
     {
-        CustomerManager customerManager=new CustomerManager (new EfCustomerDal());
+        CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+        JobManager jobManager = new JobManager(new EfJobDal());
         public IActionResult Index()
         {
-            var values = customerManager.TGetList();
+            var values = customerManager.GetCustomerListWithJob();
             return View(values);
         }
         [HttpGet]
         public IActionResult AddCustomer()
         {
+            List<SelectListItem> values = (from x in jobManager.TGetList()
+                                           select new SelectListItem()
+                                           {
+                                               Text = x.Name,
+                                               Value = x.JobID.ToString()
+                                           }).ToList();
+            ViewBag.v = values;
             return View();
         }
         [HttpPost]
@@ -36,6 +47,13 @@ namespace Product_Management_Sys.Controllers
         [HttpGet]
         public IActionResult UpdateCustomer(int id)
         {
+            List<SelectListItem> values = (from x in jobManager.TGetList()
+                                           select new SelectListItem()
+                                           {
+                                               Text = x.Name,
+                                               Value = x.JobID.ToString()
+                                           }).ToList();
+            ViewBag.v = values;
             var value = customerManager.TGetById(id);
             return View(value);
         }
