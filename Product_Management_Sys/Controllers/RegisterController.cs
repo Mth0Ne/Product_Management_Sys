@@ -1,6 +1,8 @@
 ﻿using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Product_Management_Sys.Models;
+using System.Threading.Tasks;
 
 namespace Product_Management_Sys.Controllers
 {
@@ -18,9 +20,29 @@ namespace Product_Management_Sys.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Index()
+        public async Task<IActionResult> Index(UserRegisterViewModel model)
         {
-            return View();
+            AppUser appUser = new AppUser()
+            {
+                Name = model.Name,
+                SurName = model.SurName,
+                UserName = model.UserName,
+                Email = model.Mail
+            };
+            if (model.Password == model.ConfirmPassword)
+            {
+                var result = await _userManager.CreateAsync(appUser, model.Password);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+                else foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError("", item.Description);
+                    }
+            }
+            return View(model);
         }
     }
 }
